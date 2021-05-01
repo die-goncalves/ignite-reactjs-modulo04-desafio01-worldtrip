@@ -1,5 +1,5 @@
 import { Box, Flex, SimpleGrid, Divider, Center, Text, VStack, Image } from "@chakra-ui/react"
-
+import TravelTypes from "../components/TravelTypes";
 import SwiperCore, { Navigation, Pagination } from 'swiper'
 import { Swiper, SwiperSlide } from "swiper/react"
 
@@ -24,38 +24,7 @@ export default function Home() {
       </Flex >
 
       <Flex width="100%" marginBottom="2.5rem" marginX="auto" paddingX="8.75rem" direction="column">
-        <SimpleGrid marginY="5rem" flex="1" gap="4" minChildWidth={160} alignItems="flex-start">
-          <Box>
-            <Flex direction="column" alignItems="center" justifyContent="center">
-              <Image src="/cocktail.svg" alt="cocktail" boxSize="5.3125rem" />
-              <Text marginTop="6" fontWeight="600" fontSize="2xl" lineHeight="9" color="brand.dark-head-text">vida noturna</Text>
-            </Flex>
-          </Box>
-          <Box>
-            <Flex direction="column" alignItems="center" justifyContent="center">
-              <Image src="/surf.svg" alt="surf" boxSize="5.3125rem" />
-              <Text marginTop="6" fontWeight="600" fontSize="2xl" lineHeight="9" color="brand.dark-head-text">praia</Text>
-            </Flex>
-          </Box>
-          <Box>
-            <Flex direction="column" alignItems="center" justifyContent="center">
-              <Image src="/building.svg" alt="building" boxSize="5.3125rem" />
-              <Text marginTop="6" fontWeight="600" fontSize="2xl" lineHeight="9" color="brand.dark-head-text">moderno</Text>
-            </Flex>
-          </Box>
-          <Box>
-            <Flex direction="column" alignItems="center" justifyContent="center">
-              <Image src="/museum.svg" alt="museum" boxSize="5.3125rem" />
-              <Text marginTop="6" fontWeight="600" fontSize="2xl" lineHeight="9" color="brand.dark-head-text">clássico</Text>
-            </Flex>
-          </Box>
-          <Box>
-            <Flex direction="column" alignItems="center" justifyContent="center">
-              <Image src="/earth.svg" alt="earth" boxSize="5.3125rem" />
-              <Text marginTop="6" fontWeight="600" fontSize="2xl" lineHeight="9" color="brand.dark-head-text">e mais...</Text>
-            </Flex>
-          </Box>
-        </SimpleGrid>
+        <TravelTypes />
 
         <Center marginBottom="3.25rem">
           <Divider width="5.625rem" height="0.125rem" background="brand.dark-head-text" />
