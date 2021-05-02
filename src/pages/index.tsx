@@ -1,9 +1,6 @@
-import { Box, Flex, SimpleGrid, Divider, Center, Text, VStack, Image } from "@chakra-ui/react"
+import { Box, Flex, Divider, Center, Text, VStack, Image } from "@chakra-ui/react"
 import TravelTypes from "../components/TravelTypes";
-import SwiperCore, { Navigation, Pagination } from 'swiper'
-import { Swiper, SwiperSlide } from "swiper/react"
-
-SwiperCore.use([Navigation, Pagination]);
+import Carousel from "../components/Carousel";
 
 export default function Home() {
   return (
@@ -43,68 +40,7 @@ export default function Home() {
         </VStack>
 
         <Box width="100%">
-          <Swiper
-            spaceBetween={1}
-            slidesPerView={1}
-            loop
-            navigation
-            pagination={{ clickable: true }}
-          >
-            <SwiperSlide>
-              <Flex position="relative">
-                <Image src="https://images.unsplash.com/photo-1519677100203-a0e668c92439?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80" alt="prague" width="100%" height="28.125rem" objectFit="cover" objectPosition="0% 40%" />
-                <Box position="absolute" textAlign="center" top="50%" left="50%" transform="translate(-50%, -50%)">
-                  <Text as="h1" fontSize="3rem" fontWeight="700" lineHeight="4.5rem" color="brand.light-info">Europa</Text>
-                  <Text as="p" fontSize="1.5rem" fontWeight="700" lineHeight="2.25rem" color="brand.light-head-text">O continente mais antigo</Text>
-                </Box>
-              </Flex>
-            </SwiperSlide>
-            <SwiperSlide>
-              <Flex position="relative">
-                <Image src="https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1502&q=80" alt="kenya" width="100%" height="28.125rem" objectFit="cover" objectPosition="0% 60%" />
-                <Box position="absolute" textAlign="center" top="50%" left="50%" transform="translate(-50%, -50%)">
-                  <Text as="h1" fontSize="3rem" fontWeight="700" lineHeight="4.5rem" color="brand.light-info">África</Text>
-                  <Text as="p" fontSize="1.5rem" fontWeight="700" lineHeight="2.25rem" color="brand.light-head-text">O continente considerado o berço da humanidade</Text>
-                </Box>
-              </Flex>
-            </SwiperSlide>
-            <SwiperSlide>
-              <Flex position="relative">
-                <Image src="https://images.unsplash.com/photo-1588001400947-6385aef4ab0e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1568&q=80" alt="new-zealand" width="100%" height="28.125rem" objectFit="cover" />
-                <Box position="absolute" textAlign="center" top="50%" left="50%" transform="translate(-50%, -50%)">
-                  <Text as="h1" fontSize="3rem" fontWeight="700" lineHeight="4.5rem" color="brand.light-info">Oceania</Text>
-                  <Text as="p" fontSize="1.5rem" fontWeight="700" lineHeight="2.25rem" color="brand.light-head-text">O continente com a maior concentração de ilhas</Text>
-                </Box>
-              </Flex>
-            </SwiperSlide>
-            <SwiperSlide>
-              <Flex position="relative">
-                <Image src="https://images.unsplash.com/photo-1551829714-729df766a145?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1429&q=80" alt="yellow-mountains" width="100%" height="28.125rem" objectFit="cover" objectPosition="0% 80%" />
-                <Box position="absolute" textAlign="center" top="50%" left="50%" transform="translate(-50%, -50%)">
-                  <Text as="h1" fontSize="3rem" fontWeight="700" lineHeight="4.5rem" color="brand.light-info">Ásia</Text>
-                  <Text as="p" fontSize="1.5rem" fontWeight="700" lineHeight="2.25rem" color="brand.light-head-text">O continente considerado o berço das civilizações</Text>
-                </Box>
-              </Flex>
-            </SwiperSlide>
-            <SwiperSlide>
-              <Flex position="relative">
-                <Image src="https://images.unsplash.com/photo-1617426778252-70fde8950b32?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1567&q=80" alt="grand-canyon" width="100%" height="28.125rem" objectFit="cover" objectPosition="0% 20%" />
-                <Box position="absolute" textAlign="center" top="50%" left="50%" transform="translate(-50%, -50%)">
-                  <Text as="h1" fontSize="3rem" fontWeight="700" lineHeight="4.5rem" color="brand.light-info">América do norte</Text>
-                  <Text as="p" fontSize="1.5rem" fontWeight="700" lineHeight="2.25rem" color="brand.light-head-text">O continente com a maior ilha do mundo</Text>
-                </Box>
-              </Flex>
-            </SwiperSlide>
-            <SwiperSlide>
-              <Flex position="relative">
-                <Image src="https://images.unsplash.com/photo-1530999811698-221aa9eb1739?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1400&q=80" alt="machu-picchu" width="100%" height="28.125rem" objectFit="cover" />
-                <Box position="absolute" textAlign="center" top="50%" left="50%" transform="translate(-50%, -50%)">
-                  <Text as="h1" fontSize="3rem" fontWeight="700" lineHeight="4.5rem" color="brand.light-info">América do sul</Text>
-                  <Text as="p" fontSize="1.5rem" fontWeight="700" lineHeight="2.25rem" color="brand.light-head-text">O continente com uma das maiores bacias hidrográficas do mundo</Text>
-                </Box>
-              </Flex>
-            </SwiperSlide>
-          </Swiper>
+          <Carousel />
         </Box>
       </Flex>
     </Flex >
