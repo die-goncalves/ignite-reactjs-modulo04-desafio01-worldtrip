@@ -5,7 +5,7 @@ type SlideProps = {
   link: string;
   src: string;
   alt: string;
-  position?: string;
+  position: string;
   continent: string;
   particularity: string;
 }
@@ -20,7 +20,7 @@ export default function Slide({
 }: SlideProps) {
   return (
     <Flex position="relative">
-      <Link href={link}>
+      <Link href={`/${link}`}>
         <a role="group">
           <Image
             src={src}
