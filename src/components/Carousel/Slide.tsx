@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Flex, Text, Image, Box } from "@chakra-ui/react"
+import { Box, Flex, Image, Link as ChakraLink, Text } from "@chakra-ui/react"
 
 type SlideProps = {
   link: string;
@@ -20,8 +20,10 @@ export default function Slide({
 }: SlideProps) {
   return (
     <Flex position="relative">
-      <Link href={`/${link}`}>
-        <a role="group">
+      <Link href={`/continent/${link}`} passHref>
+        <ChakraLink
+          role="group"
+        >
           <Image
             src={src}
             alt={alt}
@@ -34,7 +36,6 @@ export default function Slide({
               transform: "scale(1.025)",
             }}
           />
-
           <Box
             position="absolute"
             textAlign="center"
@@ -69,7 +70,7 @@ export default function Slide({
               {particularity}
             </Text>
           </Box>
-        </a>
+        </ChakraLink>
       </Link>
     </Flex>
   )
