@@ -1,6 +1,7 @@
-import { Flex, Icon, Image } from "@chakra-ui/react"
+import { Flex, Image, Link as ChakraLink } from "@chakra-ui/react"
+import Link from "next/link";
 import { useRouter } from 'next/router'
-import { FiChevronLeft } from 'react-icons/fi'
+import { ChevronLeftIcon } from '@chakra-ui/icons'
 
 export default function Header() {
   const { asPath } = useRouter();
@@ -19,7 +20,19 @@ export default function Header() {
       position="relative"
     >
       { !onHomePage &&
-        <Icon as={FiChevronLeft} boxSize={8} position="absolute" left="0" />
+        <Link href="/" passHref>
+          <ChakraLink
+            position="absolute"
+            left="0"
+            top="50%"
+            boxSize={8}
+            transform="translateY(-50%)"
+          >
+            <ChevronLeftIcon
+              boxSize="full"
+            />
+          </ChakraLink>
+        </Link>
       }
       <Image src="/Logo.svg" alt="worldtrip" />
     </Flex>
