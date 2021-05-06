@@ -2,16 +2,12 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import {
   Box,
   Flex,
-  Grid,
   Image,
-  SimpleGrid,
-  Stack,
   Text,
-  Tooltip,
 } from "@chakra-ui/react";
-import { InfoOutlineIcon } from "@chakra-ui/icons";
-import { CircleFlag } from "react-circle-flags";
 import { api } from "../../services/api";
+import Cities from "../../components/Cities";
+import ContinentBio from "../../components/ContinentBio";
 
 type Cities = {
   country: string,
@@ -65,80 +61,22 @@ export default function Continent({ dataContinent }: ContinentProps) {
         </Box>
       </Flex>
 
-      <Flex marginX="8.75rem" flexDirection="column">
-        <SimpleGrid
-          minChildWidth="400px"
-          spacing="4.375rem"
-          // marginX="8.75rem"
+      <Flex
+        marginX="8.75rem"
+        flexDirection="column"
+      >
+        <Box
+          width="100%"
           marginY="5rem"
-          alignItems="center"
         >
-          <Text
-            fontSize="1.5rem"
-            fontWeight="400"
-            lineHeight="2.25rem"
-            textAlign="justify"
-            color="brand.dark-head-text"
-          // maxWidth="50%"
-          >
-            {dataContinent.description}
-          </Text>
-          <Grid templateColumns="repeat(3, 1fr)" gap={5}>
-            <Box fontWeight="600" textAlign="center">
-              <Text fontSize="3rem" lineHeight="4.5rem" color="brand.orange">
-                {dataContinent.countries}
-              </Text>
-              <Text
-                fontSize="1.5rem"
-                lineHeight="2.25rem"
-                color="brand.dark-head-text"
-              >
-                Países
-              </Text>
-            </Box>
-            <Box fontWeight="600" textAlign="center">
-              <Text fontSize="3rem" lineHeight="4.5rem" color="brand.orange">
-                {dataContinent.languages}
-              </Text>
-              <Text
-                fontSize="1.5rem"
-                lineHeight="2.25rem"
-                color="brand.dark-head-text"
-              >
-                Línguas
-              </Text>
-            </Box>
-            <Box fontWeight="600" textAlign="center" minWidth="12rem">
-              <Text fontSize="3rem" lineHeight="4.5rem" color="brand.orange">
-                {dataContinent.mostVisitedCities.length}
-              </Text>
-              <Text
-                fontSize="1.5rem"
-                lineHeight="2.25rem"
-                color="brand.dark-head-text"
-              >
-                cidades +100
-                <Tooltip
-                  hasArrow
-                  arrowSize={15}
-                  borderRadius="5px"
-                  padding={4}
-                  textAlign="justify"
-                  label={`Cidades da ${dataContinent.continent} que estão presentes entre as 100 cidades mais visitadas do mundo.`}
-                  aria-label="A tooltip"
-                  bg="brand.dark-head-text"
-                  color="brand.light-info"
-                >
-                  <InfoOutlineIcon
-                    fontSize="1rem"
-                    color="brand.dark-half-info"
-                    marginLeft="0.625rem"
-                  />
-                </Tooltip>
-              </Text>
-            </Box>
-          </Grid>
-        </SimpleGrid>
+          <ContinentBio
+            description={dataContinent.description}
+            countries={dataContinent.countries}
+            languages={dataContinent.languages}
+            mostVisitedCities={dataContinent.mostVisitedCities.length}
+            continent={dataContinent.continent}
+          />
+        </Box>
 
         <Box width="100%">
           <Text
@@ -151,58 +89,7 @@ export default function Continent({ dataContinent }: ContinentProps) {
           >
             Cidades +100
           </Text>
-          <SimpleGrid minChildWidth="16rem" spacing="1.8125rem">
-            {dataContinent.mostVisitedCities.map((city) => {
-              return (
-                <Box width="100%" borderRadius="base" overflow="hidden">
-                  <Image
-                    width="100%"
-                    height="10rem"
-                    src={city.photography}
-                    alt={city.city}
-                    objectFit="cover"
-                  />
-
-                  <Box
-                    paddingX="1.5rem"
-                    paddingY="1.125rem"
-                    borderTop="none"
-                    borderWidth="1px"
-                    borderColor="brand.half-orange"
-                    background="white"
-                  >
-                    <Box display="flex" justifyContent="space-between">
-                      <Stack direction="column" spacing="0.75rem">
-                        <Text
-                          fontFamily="Barlow"
-                          fontWeight="600"
-                          fontSize="1.25rem"
-                          lineHeight="1.5625rem"
-                          color="brand.dark-head-text"
-                        >
-                          {city.city}
-                        </Text>
-                        <Text
-                          fontFamily="Barlow"
-                          fontWeight="500"
-                          fontSize="1rem"
-                          lineHeight="1.625rem"
-                          color="brand.dark-info"
-                        >
-                          {city.country}
-                        </Text>
-                      </Stack>
-                      <CircleFlag
-                        width="30"
-                        height="30"
-                        countryCode={city.countryCode.toLowerCase()}
-                      />
-                    </Box>
-                  </Box>
-                </Box>
-              );
-            })}
-          </SimpleGrid>
+          <Cities mostVisitedCities={dataContinent.mostVisitedCities} />
         </Box>
       </Flex>
     </Flex >
