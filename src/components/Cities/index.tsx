@@ -7,7 +7,6 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
-import { CircleFlag } from "react-circle-flags";
 
 type CityInformation = {
   country: string;
