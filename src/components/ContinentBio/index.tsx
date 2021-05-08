@@ -1,11 +1,4 @@
-import {
-  Box,
-  Text,
-  Tooltip,
-  Flex,
-  Center,
-  Spacer,
-} from "@chakra-ui/react";
+import { Box, Text, Tooltip, Flex, Center, Spacer } from "@chakra-ui/react";
 import { InfoOutlineIcon } from "@chakra-ui/icons";
 
 type ContinentBioProps = {
@@ -14,14 +7,18 @@ type ContinentBioProps = {
   languages: number;
   description: string;
   mostVisitedCities: number;
-}
+};
 
-export default function ContinentBio({ continent, countries, languages, description, mostVisitedCities }: ContinentBioProps) {
+export default function ContinentBio({
+  continent,
+  countries,
+  languages,
+  description,
+  mostVisitedCities,
+}: ContinentBioProps) {
   return (
     <Flex>
-      <Box
-        maxWidth="50%"
-      >
+      <Box maxWidth="50%">
         <Text
           fontSize="1.5rem"
           fontWeight="400"
@@ -33,9 +30,7 @@ export default function ContinentBio({ continent, countries, languages, descript
         </Text>
       </Box>
 
-      <Center
-        flex="1"
-      >
+      <Center flex="1">
         <Spacer />
         <Box fontWeight="600" textAlign="center">
           <Text fontSize="3rem" lineHeight="4.5rem" color="brand.orange">
@@ -76,6 +71,7 @@ export default function ContinentBio({ continent, countries, languages, descript
             <Tooltip
               hasArrow
               arrowSize={15}
+              maxWidth="240px"
               borderRadius="5px"
               padding={4}
               textAlign="justify"
@@ -94,6 +90,6 @@ export default function ContinentBio({ continent, countries, languages, descript
           </Text>
         </Box>
       </Center>
-    </Flex >
-  )
+    </Flex>
+  );
 }
