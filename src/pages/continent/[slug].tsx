@@ -1,30 +1,24 @@
 import { GetStaticPaths, GetStaticProps } from "next";
-import {
-  Box,
-  Flex,
-  Image,
-  Text,
-} from "@chakra-ui/react";
+import { Box, Flex, Image, Skeleton, Text } from "@chakra-ui/react";
 import { api } from "../../services/api";
 import Cities from "../../components/Cities";
 import ContinentBio from "../../components/ContinentBio";
 
 type Cities = {
-  country: string,
-  city: string,
-  countryCode: string,
-  photography: string,
+  country: string;
+  city: string;
+  countryCode: string;
+  photography: string;
 };
 type Continent = {
-  continent: string,
-  countries: number,
-  languages: number,
-  description: string,
-  mostVisitedCities: Cities[],
+  continent: string;
+  countries: number;
+  languages: number;
+  description: string;
+  mostVisitedCities: Cities[];
 };
-
 type ContinentProps = {
-  dataContinent: Continent,
+  dataContinent: Continent;
 };
 
 export default function Continent({ dataContinent }: ContinentProps) {
@@ -47,6 +41,16 @@ export default function Continent({ dataContinent }: ContinentProps) {
           width="100%"
           height="28.125rem"
           objectFit="cover"
+          filter="brightness(60%) contrast(125%)"
+          fallback={
+            <Skeleton
+              width="100%"
+              height="28.125rem"
+              speed={1}
+              endColor="brand.skeleton-endColor"
+              startColor="brand.skeleton-startColor"
+            />
+          }
         />
         <Box position="absolute" bottom="15%" left="8.75rem">
           <Text
@@ -61,14 +65,8 @@ export default function Continent({ dataContinent }: ContinentProps) {
         </Box>
       </Flex>
 
-      <Flex
-        marginX="8.75rem"
-        flexDirection="column"
-      >
-        <Box
-          width="100%"
-          marginY="5rem"
-        >
+      <Flex marginX="8.75rem" flexDirection="column">
+        <Box width="100%" marginY="5rem">
           <ContinentBio
             description={dataContinent.description}
             countries={dataContinent.countries}
@@ -92,7 +90,7 @@ export default function Continent({ dataContinent }: ContinentProps) {
           <Cities mostVisitedCities={dataContinent.mostVisitedCities} />
         </Box>
       </Flex>
-    </Flex >
+    </Flex>
   );
 }
 
