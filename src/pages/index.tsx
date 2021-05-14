@@ -1,48 +1,52 @@
-import { Box, Flex, Divider, Center, Text, VStack, Image } from "@chakra-ui/react"
+import { Box, Flex, Divider, Center, Text, VStack } from "@chakra-ui/react";
 import TravelTypes from "../components/TravelTypes";
 import Carousel from "../components/Carousel";
+import HomeBanner from "../components/HomeBanner";
 
 export default function Home() {
   return (
     <Flex direction="column">
-      <Flex position="relative">
-        <Image src="/Background.svg" alt="background" />
-        <Box position="absolute" maxWidth="50%" paddingLeft={32} paddingRight={12} top="50%" transform="translateY(-50%)">
-          <VStack spacing={5} alignItems="flex-start">
-            <Text as="h1" fontSize="2.25rem" fontWeight="500" lineHeight="3.375rem" color="brand.light-info">
-              5 Continentes,<br />infinitas possibilidades.
-            </Text>
-            <Text as="p" fontSize="1.25rem" fontWeight="400" lineHeight="1.875rem" color="brand.light-head-text">
-              Chegou a hora de tirar do papel a viagem que você sempre sonhou.
-            </Text>
-          </VStack>
-        </Box>
-        <Image src="/Airplane.svg" alt="airplane" position="absolute" maxWidth="50%" paddingLeft={12} paddingRight={32} right="0" top="50%" transform="translateY(-30%)" />
-      </Flex >
+      <HomeBanner />
 
-      <Flex width="100%" marginBottom="2.5rem" marginX="auto" paddingX="8.75rem" direction="column">
+      <Flex
+        width="100%"
+        maxW="1440px"
+        marginX="auto"
+        marginBottom={{ base: "1.5rem", sm: "1.834rem", md: "2.167rem", lg: "2.5rem" }}
+        direction="column"
+      >
         <TravelTypes />
 
-        <Center marginBottom="3.25rem">
-          <Divider width="5.625rem" height="0.125rem" background="brand.dark-head-text" />
+        <Center
+          marginBottom={["1.25rem", "1.75rem", "2.25rem", "2.75rem", "3.25rem"]}
+          marginX="auto"
+        >
+          <Divider
+            width={["3.75rem", "4.21875rem", "4.6875rem", "5.15625rem", "5.625rem"]}
+            height="0.125rem"
+            background="brand.dark-head-text"
+          />
         </Center>
 
-        <VStack spacing="24px" marginBottom="3.25rem">
+        <Box
+          marginBottom={["1.25rem", "1.75rem", "2.25rem", "2.75rem", "3.25rem"]}
+          marginX="auto"
+        >
           <Text
-            fontSize="2.25rem"
+            fontSize={["1.21rem", "1.47rem", "1.73rem", "1.99rem", "2.25rem"]}
             fontWeight="500"
-            lineHeight="3.375rem"
+            lineHeight={["1.875rem", "2.25rem", "2.625rem", "3rem", "3.375rem"]}
             color="brand.dark-head-text"
             textAlign="center"
           >
             Vamos nessa? <br /> Então escolha seu continente
           </Text>
-        </VStack>
+        </Box>
 
-        <Box width="100%">
+        <Box marginX={{ lg: "6.8125rem", xl: "8.75rem" }}>
           <Carousel />
         </Box>
       </Flex>
-    </Flex >
-  )
+    </Flex>
+  );
 }

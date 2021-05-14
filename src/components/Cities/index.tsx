@@ -20,7 +20,10 @@ type CitiesProps = {
 
 export default function Cities({ mostVisitedCities }: CitiesProps) {
   return (
-    <SimpleGrid minChildWidth="16rem" spacing="1.8125rem">
+    <SimpleGrid
+      minChildWidth={{ base: "100%", sm: "16rem" }}
+      spacing={{ base: "1.25rem", sm: "1.8125rem" }}
+    >
       {mostVisitedCities.map((city) => {
         return (
           <Box
@@ -59,11 +62,14 @@ export default function Cities({ mostVisitedCities }: CitiesProps) {
                 justifyContent="space-between"
                 alignItems="center"
               >
-                <Stack direction="column" spacing="0.75rem">
+                <Stack
+                  direction="column"
+                  spacing={{ base: "0.25rem", sm: "0.75rem" }}
+                >
                   <Text
                     fontFamily="Barlow"
                     fontWeight="600"
-                    fontSize="1.25rem"
+                    fontSize={{ base: "1rem", sm: "1.25rem" }}
                     lineHeight="1.5625rem"
                     color="brand.dark-head-text"
                   >
@@ -72,14 +78,18 @@ export default function Cities({ mostVisitedCities }: CitiesProps) {
                   <Text
                     fontFamily="Barlow"
                     fontWeight="500"
-                    fontSize="1rem"
+                    fontSize={{ base: "0.75rem", sm: "1rem" }}
                     lineHeight="1.625rem"
                     color="brand.dark-info"
                   >
                     {city.country}
                   </Text>
                 </Stack>
-                <Flex boxSize="30px" borderRadius="full" overflow="hidden">
+                <Flex
+                  boxSize={{ base: "25px", sm: "30px" }}
+                  borderRadius="full"
+                  overflow="hidden"
+                >
                   <Image
                     margin="auto"
                     src={`https://hatscripts.github.io/circle-flags/flags/${city.countryCode.toLowerCase()}.svg`}

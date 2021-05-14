@@ -33,7 +33,7 @@ export default function Carousel() {
     <Skeleton
       isLoaded={allContinents.length !== 0}
       width="100%"
-      height="28.125rem"
+      height={["15.625rem", "18.75rem", "21.875rem", "25rem", "28.125rem"]}
       speed={1}
       endColor="brand.skeleton-endColor"
       startColor="brand.skeleton-startColor"
