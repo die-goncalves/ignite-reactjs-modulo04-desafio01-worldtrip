@@ -1,31 +1,30 @@
-import { Box, Flex, Image, Text, useBreakpointValue } from "@chakra-ui/react";
+import { Box, Flex, Image, Skeleton, Text, useBreakpointValue } from "@chakra-ui/react";
 
 type TravelTemplateProps = {
   src: string;
   alt: string;
   text: string;
-  justify?: string;
 };
 
 export default function TravelTemplate({
   src,
   alt,
   text,
-  justify,
 }: TravelTemplateProps) {
-  const isWideVersion = useBreakpointValue({
-    base: false,
-    sm: true,
+  const isLargerThan480 = useBreakpointValue({
+    base: 'base',
+    sm: '+sm',
   });
 
   return (
     <>
-      {isWideVersion ? (
+      {(isLargerThan480 === '+sm') && (
         <Flex direction="column" alignItems="center" justifyContent="center">
           <Image
             src={src}
             alt={alt}
             boxSize={{ sm: "3.0625rem", md: "3.8125rem", lg: "4.5625rem", xl: "5.3125rem" }}
+            ignoreFallback
           />
           <Text
             marginTop={{ base: "0.75rem", md: "1rem", lg: "1.25rem", xl: "1.5rem" }}
@@ -37,8 +36,11 @@ export default function TravelTemplate({
             {text}
           </Text>
         </Flex>
-      ) : (
-        <Flex alignItems="center" justifyContent={justify}>
+      )}
+      {(isLargerThan480 === 'base') && (
+        <Flex
+          alignItems="center"
+        >
           <Box
             boxSize="0.5rem"
             borderRadius="full"

@@ -1,9 +1,7 @@
-import { useEffect, useState } from "react";
+import { Skeleton } from "@chakra-ui/react";
 import SwiperCore, { Navigation, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Slide from "./Slide";
-import { api } from "../../services/api";
-import { Skeleton } from "@chakra-ui/react";
 
 SwiperCore.use([Navigation, Pagination]);
 
@@ -15,23 +13,14 @@ type InfoContinent = {
   postcardInfo: string;
   postcardPosition: string;
 };
+type CarouselProps = {
+  continents: InfoContinent[];
+}
 
-export default function Carousel() {
-  const [allContinents, setAllContinents] = useState<InfoContinent[]>([]);
-
-  useEffect(() => {
-    async function getAllContinents() {
-      await api
-        .get("/continents")
-        .then((response) => setAllContinents(response.data));
-    }
-
-    getAllContinents();
-  }, []);
-
+export default function Carousel({ continents }: CarouselProps) {
   return (
     <Skeleton
-      isLoaded={allContinents.length !== 0}
+      isLoaded={continents.length !== 0}
       width="100%"
       height={["15.625rem", "18.75rem", "21.875rem", "25rem", "28.125rem"]}
       speed={1}
@@ -46,7 +35,7 @@ export default function Carousel() {
         pagination={{ clickable: true }}
         initialSlide={0}
       >
-        {allContinents.map((el) => {
+        {continents.map((el) => {
           return (
             <SwiperSlide key={el.slug}>
               <Slide

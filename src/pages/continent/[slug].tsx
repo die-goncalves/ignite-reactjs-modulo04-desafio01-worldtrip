@@ -1,40 +1,40 @@
 import { GetStaticPaths, GetStaticProps } from "next";
+import { Collection, Documents, query as q } from "faunadb";
+import { fauna } from "../../services/fauna";
 import {
   Box,
   Flex,
-  Image,
-  Skeleton,
   Text,
-  useBreakpointValue,
 } from "@chakra-ui/react";
-import { api } from "../../services/api";
 import Cities from "../../components/Cities";
 import ContinentBio from "../../components/ContinentBio";
 import ContinentBanner from "../../components/ContinentBanner";
 
-type Cities = {
+type FaunaDBDataCities = {
   country: string;
   city: string;
   countryCode: string;
   photography: string;
 };
-type Continent = {
+type FaunaDBDataContinent = {
+  slug?: string;
   continent: string;
   countries: number;
   languages: number;
   description: string;
-  mostVisitedCities: Cities[];
+  mostVisitedCities: FaunaDBDataCities[];
 };
+type FaunaDBContinent = {
+  data: FaunaDBDataContinent;
+}
+type FaunaDBData = {
+  data: FaunaDBContinent[];
+}
 type ContinentProps = {
-  dataContinent: Continent;
+  dataContinent: FaunaDBDataContinent;
 };
 
 export default function Continent({ dataContinent }: ContinentProps) {
-  const isWideVersion = useBreakpointValue({
-    base: false,
-    md: true,
-  });
-
   const chooseBanner =
     dataContinent.mostVisitedCities[
       Math.floor(Math.random() * dataContinent.mostVisitedCities.length)
@@ -80,13 +80,7 @@ export default function Continent({ dataContinent }: ContinentProps) {
           >
             Cidades +100
           </Text>
-          {isWideVersion ? (
-            <Cities mostVisitedCities={dataContinent.mostVisitedCities} />
-          ) : (
-            <Box paddingX={{ base: "2.75rem", sm: "0" }}>
-              <Cities mostVisitedCities={dataContinent.mostVisitedCities} />
-            </Box>
-          )}
+          <Cities mostVisitedCities={dataContinent.mostVisitedCities} />
         </Box>
       </Flex>
     </Flex>
@@ -95,17 +89,21 @@ export default function Continent({ dataContinent }: ContinentProps) {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { slug } = params;
-  const { data } = await api.get("continents");
-  const specificContinent = data.find(
-    (eachContinent) => eachContinent.slug === slug
-  );
+  // const { data } = await api.get("continents");
+  // const specificContinent = data.find(
+  //   (eachContinent) => eachContinent.slug === slug
+  // );
 
-  const continent: Continent = {
-    continent: specificContinent.continent,
-    countries: specificContinent.countries,
-    languages: specificContinent.languages,
-    description: specificContinent.description,
-    mostVisitedCities: specificContinent.mostVisitedCities,
+  const specificContinent = await fauna.query<FaunaDBContinent>(
+    q.Get(q.Match(q.Index("continents_by_slug"), `${slug}`))
+  )
+
+  const continent: FaunaDBDataContinent = {
+    continent: specificContinent.data.continent,
+    countries: specificContinent.data.countries,
+    languages: specificContinent.data.languages,
+    description: specificContinent.data.description,
+    mostVisitedCities: specificContinent.data.mostVisitedCities,
   };
 
   return {
@@ -114,14 +112,19 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const { data } = await api.get("continents");
+  // const { data } = await api.get("continents");
+  const response = await fauna.query<FaunaDBData>(
+    q.Map(
+      q.Paginate(Documents(Collection('continents'))),
+      q.Lambda(x => q.Get(x))
+    ))
 
-  const paths = data.map((continent) => ({
-    params: { slug: continent.slug },
+  const paths = response.data.map((continent) => ({
+    params: { slug: continent.data.slug },
   }));
 
   return {
     paths,
-    fallback: false,
+    fallback: true,
   };
 };

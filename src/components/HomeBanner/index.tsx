@@ -1,9 +1,9 @@
 import {
   Flex,
-  Text,
-  VStack,
   Image,
+  Text,
   useBreakpointValue,
+  VStack,
 } from "@chakra-ui/react";
 
 export default function HomeBanner() {
@@ -20,6 +20,7 @@ export default function HomeBanner() {
         src="/Background.svg"
         alt="background"
         objectFit="cover"
+        ignoreFallback
       />
       <Flex
         width="100%"
@@ -68,6 +69,7 @@ export default function HomeBanner() {
               position="absolute"
               bottom="0"
               transform="translateY(15%)"
+              ignoreFallback
             />
           </Flex>
         }

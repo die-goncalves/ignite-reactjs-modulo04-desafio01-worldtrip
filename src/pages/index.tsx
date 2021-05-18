@@ -1,9 +1,32 @@
-import { Box, Flex, Divider, Center, Text, VStack } from "@chakra-ui/react";
+import { GetStaticProps } from "next";
+import { Collection, Documents, query as q } from "faunadb";
+import { fauna } from "../services/fauna";
+import { Box, Flex, Divider, Center, Text } from "@chakra-ui/react";
 import TravelTypes from "../components/TravelTypes";
 import Carousel from "../components/Carousel";
 import HomeBanner from "../components/HomeBanner";
 
-export default function Home() {
+type FaunaDBDataContinent = {
+  slug: string;
+  continent: string;
+  particularity: string;
+  postcard: string;
+  postcardInfo: string;
+  postcardPosition: string;
+};
+type FaunaDBContinent = {
+  ref: object;
+  ts: number;
+  data: FaunaDBDataContinent;
+}
+type FaunaDBData = {
+  data: FaunaDBContinent[];
+}
+type HomeProps = {
+  continents: FaunaDBDataContinent[];
+}
+
+export default function Home({ continents }: HomeProps) {
   return (
     <Flex direction="column">
       <HomeBanner />
@@ -44,9 +67,32 @@ export default function Home() {
         </Box>
 
         <Box marginX={{ lg: "6.8125rem", xl: "8.75rem" }}>
-          <Carousel />
+          <Carousel continents={continents} />
         </Box>
       </Flex>
     </Flex>
   );
 }
+
+export const getStaticProps: GetStaticProps = async () => {
+  const allContinents = await fauna.query<FaunaDBData>(
+    q.Map(
+      q.Paginate(Documents(Collection('continents'))),
+      q.Lambda(x => q.Get(x))
+    ))
+
+  const continents = allContinents.data.map((el) => {
+    return {
+      slug: el.data.slug,
+      continent: el.data.continent,
+      particularity: el.data.particularity,
+      postcard: el.data.postcard,
+      postcardInfo: el.data.postcardInfo,
+      postcardPosition: el.data.postcardPosition
+    }
+  })
+
+  return {
+    props: { continents },
+  };
+};

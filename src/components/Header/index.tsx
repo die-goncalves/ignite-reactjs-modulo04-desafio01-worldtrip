@@ -31,10 +31,12 @@ export default function Header() {
             </ChakraLink>
           </Link>
         )}
+
         <Image
           src="/Logo.svg"
           alt="worldtrip"
           width={["5rem", "6.625rem", "8.25rem", "9.875rem", "11.5rem"]}
+          ignoreFallback
         />
       </Flex>
     </Box>
