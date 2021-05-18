@@ -10,6 +10,7 @@ import {
 import { api } from "../../services/api";
 import Cities from "../../components/Cities";
 import ContinentBio from "../../components/ContinentBio";
+import ContinentBanner from "../../components/ContinentBanner";
 
 type Cities = {
   country: string;
@@ -48,60 +49,7 @@ export default function Continent({ dataContinent }: ContinentProps) {
       flexDirection="column"
       paddingBottom={["1.5rem", "1.75rem", "2rem", "2.25rem", "2.5rem"]}
     >
-      <Flex position="relative">
-        <Image
-          src={chooseBanner}
-          alt="background"
-          width="100%"
-          height={["9.375rem", "14.0625rem", "18.75rem", "23.4375rem", "28.125rem"]}
-          objectFit="cover"
-          filter="brightness(60%) contrast(125%)"
-          fallback={
-            <Skeleton
-              width="100%"
-              height={["9.375rem", "14.0625rem", "18.75rem", "23.4375rem", "28.125rem"]}
-              speed={1}
-              endColor="brand.skeleton-endColor"
-              startColor="brand.skeleton-startColor"
-            />
-          }
-        />
-        {isWideVersion ? (
-          <Box
-            position="absolute"
-            bottom="15%"
-            left={{ md: "4.875rem", lg: "6.8125rem", xl: "8.75rem" }}
-          >
-            <Text
-              as="h1"
-              fontSize={{ md: "2.375rem", lg: "2.6875rem", xl: "3rem" }}
-              fontWeight="600"
-              lineHeight={{ md: "3.5625rem", lg: "4.03125rem", xl: "4.5rem" }}
-              color="brand.light-info"
-            >
-              {dataContinent.continent}
-            </Text>
-          </Box>
-        ) : (
-          <Box
-            position="absolute"
-            width="100%"
-            textAlign="center"
-            top="50%"
-            transform="translateY(-50%)"
-          >
-            <Text
-              as="h1"
-              fontSize={{ base: "1.75rem", sm: "2.0625rem" }}
-              fontWeight="600"
-              lineHeight={{ base: "2.625rem", sm: "3.09375rem" }}
-              color="brand.light-info"
-            >
-              {dataContinent.continent}
-            </Text>
-          </Box>
-        )}
-      </Flex>
+      <ContinentBanner chooseBanner={chooseBanner} nameContinent={dataContinent.continent} />
 
       <Flex
         marginX={["1rem", "2.9375rem", "4.875rem", "6.8125rem", "8.75rem"]}
