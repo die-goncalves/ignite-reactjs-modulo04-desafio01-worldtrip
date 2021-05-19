@@ -66,7 +66,7 @@ export default function Home({ continents }: HomeProps) {
           </Text>
         </Box>
 
-        <Box marginX={{ lg: "6.8125rem", xl: "8.75rem" }}>
+        <Box marginX={{ lg: "4.8660715rem", xl: "6.25rem" }}>
           <Carousel continents={continents} />
         </Box>
       </Flex>
