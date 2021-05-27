@@ -26,10 +26,10 @@ export default function TravelTemplate({
             boxSize={{ sm: "3.0625rem", md: "3.8125rem", lg: "4.5625rem", xl: "5.3125rem" }}
             ignoreFallback
           />
-          <Text
+          <Text textAlign="center"
             marginTop={{ base: "0.75rem", md: "1rem", lg: "1.25rem", xl: "1.5rem" }}
             fontWeight="600"
-            fontSize={{ base: "1.21875rem", md: "1.3125rem", lg: "1.40625rem", xl: "1.5rem" }}
+            fontSize={{ base: "1.17rem", md: "1.3125rem", lg: "1.40625rem", xl: "1.5rem" }}
             lineHeight={{ base: "1.828125rem", md: "1.96875rem", lg: "2.109375rem", xl: "2.25rem" }}
             color="brand.dark-head-text"
           >
