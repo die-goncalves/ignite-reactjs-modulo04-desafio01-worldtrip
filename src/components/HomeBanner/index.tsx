@@ -7,9 +7,9 @@ import {
 } from "@chakra-ui/react";
 
 export default function HomeBanner() {
-  const isWideVersion = useBreakpointValue({
-    base: false,
-    md: true,
+  const isLargerThan768 = useBreakpointValue({
+    base: 'base',
+    md: '+md',
   });
 
   return (
@@ -57,7 +57,7 @@ export default function HomeBanner() {
           </Text>
           </VStack>
         </Flex>
-        {isWideVersion &&
+        {isLargerThan768 === '+md' && (
           <Flex
             position="relative"
             minWidth={{ base: "13.0625rem", lg: "19.59375rem", xl: "26.125rem" }}
@@ -72,7 +72,7 @@ export default function HomeBanner() {
               ignoreFallback
             />
           </Flex>
-        }
+        )}
       </Flex>
     </Flex>
   );
