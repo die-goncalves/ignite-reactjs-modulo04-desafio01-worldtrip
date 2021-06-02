@@ -113,6 +113,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   return {
     props: { dataContinent: continent },
+    revalidate: 7 * 24 * 60 * 60,
   };
 };
 

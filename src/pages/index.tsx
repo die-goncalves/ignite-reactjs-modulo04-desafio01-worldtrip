@@ -101,5 +101,6 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: { continents },
+    revalidate: 7 * 24 * 60 * 60,
   };
 };
