@@ -1,12 +1,13 @@
 import { Box, Flex, Image, Link as ChakraLink } from "@chakra-ui/react";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { ChevronLeftIcon } from "@chakra-ui/icons";
 
-export default function Header() {
-  const { asPath } = useRouter();
+type HeaderProps = {
+  goBackLink?: string;
+}
 
-  const onHomePage = asPath === "/" ? true : false;
+export default function Header({ goBackLink }: HeaderProps) {
+  const hasPath = (typeof goBackLink !== 'undefined');
 
   return (
     <Box as="header" maxWidth="1440px" marginX="auto">
@@ -17,8 +18,8 @@ export default function Header() {
         justifyContent="center"
         position="relative"
       >
-        {!onHomePage && (
-          <Link href="/" passHref>
+        {hasPath && (
+          <Link href={goBackLink} passHref>
             <ChakraLink
               display="flex"
               position="absolute"
@@ -31,11 +32,11 @@ export default function Header() {
             </ChakraLink>
           </Link>
         )}
-
         <Image
+          width={["5rem", "6.625rem", "8.25rem", "9.875rem", "11.5rem"]}
+          height={["1.243125rem", "1.64625rem", "2.050625rem", "2.455rem", "2.859375rem"]}
           src="/Logo.svg"
           alt="worldtrip"
-          width={["5rem", "6.625rem", "8.25rem", "9.875rem", "11.5rem"]}
           ignoreFallback
         />
       </Flex>

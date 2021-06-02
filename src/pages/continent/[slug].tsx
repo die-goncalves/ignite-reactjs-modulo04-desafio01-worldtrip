@@ -6,6 +6,7 @@ import { Box, Flex, Text } from "@chakra-ui/react";
 import Cities from "../../components/Cities";
 import ContinentBio from "../../components/ContinentBio";
 import ContinentBanner from "../../components/ContinentBanner";
+import Header from "../../components/Header";
 
 type FaunaDBDataCities = {
   country: string;
@@ -43,6 +44,7 @@ export default function Continent({ dataContinent }: ContinentProps) {
         <title>{dataContinent.continent} | worldtrip</title>
       </Head>
 
+      <Header goBackLink="/" />
       <Flex
         as="main"
         width="100%"

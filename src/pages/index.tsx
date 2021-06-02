@@ -6,6 +6,7 @@ import { Box, Flex, Divider, Center, Text } from "@chakra-ui/react";
 import TravelTypes from "../components/TravelTypes";
 import Carousel from "../components/Carousel";
 import HomeBanner from "../components/HomeBanner";
+import Header from "../components/Header";
 
 type FaunaDBDataContinent = {
   slug: string;
@@ -34,6 +35,7 @@ export default function Home({ continents }: HomeProps) {
         <title>Home | worldtrip</title>
       </Head>
 
+      <Header />
       <Flex direction="column">
         <HomeBanner />
         <Flex

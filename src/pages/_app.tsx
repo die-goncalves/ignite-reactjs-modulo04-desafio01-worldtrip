@@ -1,5 +1,4 @@
 import { ChakraProvider } from '@chakra-ui/react'
-import Header from "../components/Header";
 import { theme } from '../styles/theme'
 
 // Swiper
@@ -11,7 +10,6 @@ import 'swiper/components/pagination/pagination.scss';
 function MyApp({ Component, pageProps }) {
   return (
     <ChakraProvider theme={theme}>
-      <Header />
       <Component {...pageProps} />
     </ChakraProvider>
   )
