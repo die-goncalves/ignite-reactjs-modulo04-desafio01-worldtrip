@@ -1,23 +1,12 @@
-import {
-  Flex,
-  Image,
-  Text,
-  useBreakpointValue,
-  VStack,
-} from "@chakra-ui/react";
+import { Flex, Image, Text, VStack } from "@chakra-ui/react";
 
 export default function HomeBanner() {
-  const isLargerThan768 = useBreakpointValue({
-    base: 'base',
-    md: '+md',
-  });
-
   return (
     <Flex position="relative" width="100%" maxW="1440px" marginX="auto">
       <Image
         width="100%"
         height={["10.25rem", "12.921875rem", "15.59375rem", "18.265625rem", "20.9375rem"]}
-        src="/Background.svg"
+        src="/Background.jpg"
         alt="background"
         objectFit="cover"
         ignoreFallback
@@ -57,22 +46,22 @@ export default function HomeBanner() {
           </Text>
           </VStack>
         </Flex>
-        {isLargerThan768 === '+md' && (
-          <Flex
-            position="relative"
-            minWidth={{ base: "13.0625rem", lg: "19.59375rem", xl: "26.125rem" }}
-            alignItems="flex-end"
-          >
-            <Image
-              src="/Airplane.svg"
-              alt="airplane"
-              position="absolute"
-              bottom="0"
-              transform="translateY(15%)"
-              ignoreFallback
-            />
-          </Flex>
-        )}
+        <Flex
+          display={["none", "none", "initial"]}
+          position="relative"
+          minWidth={{ base: "14.7125rem", lg: "19.59375rem", xl: "26.125rem" }}
+          alignItems="flex-end"
+        >
+          <Image
+            src="/Airplane.svg"
+            alt="airplane"
+            objectFit="cover"
+            ignoreFallback
+            position="absolute"
+            bottom="0"
+            transform="translateY(15%)"
+          />
+        </Flex>
       </Flex>
     </Flex>
   );
