@@ -94,10 +94,6 @@ export default function Continent({ dataContinent }: ContinentProps) {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { slug } = params;
-  // const { data } = await api.get("continents");
-  // const specificContinent = data.find(
-  //   (eachContinent) => eachContinent.slug === slug
-  // );
 
   const specificContinent = await fauna.query<FaunaDBContinent>(
     q.Get(q.Match(q.Index("continents_by_slug"), `${slug}`))
@@ -118,7 +114,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  // const { data } = await api.get("continents");
   const response = await fauna.query<FaunaDBData>(
     q.Map(
       q.Paginate(Documents(Collection('continents'))),
